@@ -1,3 +1,5 @@
+package svz.sandbox;
+
 public class MyFirstProgram {
 
 
