@@ -3,7 +3,7 @@ package svz.sandbox;
 public class MyFirstProgram {
 
   public static void main(String[] args) {
-    hello("world");
+    /*hello("world");
     hello("user");
     hello("Vitaliy");
 
@@ -12,10 +12,17 @@ public class MyFirstProgram {
 
     Rectangle r = new Rectangle(4, 6);
     System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + r.area());
+*/
+    Point p1 = new Point(-2, -4);
+    Point p2 = new Point(-1, 1);
+
+    System.out.println("Точка A имеет координаты X = " + p1.x + ", Y = " + p1.y);
+    System.out.println("Точка B имеет координаты X = " + p2.x + ", Y = " + p2.y);
+    System.out.println("Расстояние между точками A и B составляет " + Point.distance(p1, p2));
+
   }
 
   public static void hello(String somebody) {
     System.out.println("Hello, " + somebody + "!");
   }
-
 }
