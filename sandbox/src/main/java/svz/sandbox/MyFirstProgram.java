@@ -3,7 +3,7 @@ package svz.sandbox;
 public class MyFirstProgram {
 
   public static void main(String[] args) {
-    /*hello("world");
+/*  hello("world");
     hello("user");
     hello("Vitaliy");
 
@@ -18,11 +18,11 @@ public class MyFirstProgram {
 
     System.out.println("Точка A имеет координаты X = " + p1.x + ", Y = " + p1.y);
     System.out.println("Точка B имеет координаты X = " + p2.x + ", Y = " + p2.y);
-    System.out.println("Расстояние между точками A и B составляет " + Point.distance(p1, p2));
+    System.out.println("Расстояние между точками A и B составляет " + p1.distance(p2));
 
   }
-
-  public static void hello(String somebody) {
-    System.out.println("Hello, " + somebody + "!");
+/*
+  public static void hello(String somebody) {System.out.println("Hello, " + somebody + "!");
   }
+*/
 }
