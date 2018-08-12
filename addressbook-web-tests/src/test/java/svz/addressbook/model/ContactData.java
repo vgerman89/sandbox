@@ -1,4 +1,4 @@
-package svz.addressbook;
+package svz.addressbook.model;
 
 public class ContactData {
   private final String firstname;
