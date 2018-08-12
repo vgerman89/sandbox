@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import svz.addressbook.model.ContactData;
 
-public class ContactHelper  extends HelperBase  {
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(FirefoxDriver wd) {
     super(wd);
@@ -34,7 +34,16 @@ public class ContactHelper  extends HelperBase  {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void deleteAlertAcception(){
+  public void initContactModification() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  }
+
+  public void submitContactModification() {
+    click(By.name("update"));
+
+  }
+
+  public void deleteAlertAcception() {
     wd.switchTo().alert().accept();
   }
 }
