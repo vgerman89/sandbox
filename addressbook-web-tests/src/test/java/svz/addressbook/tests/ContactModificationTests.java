@@ -16,7 +16,9 @@ public class ContactModificationTests extends TestBase {
             "V.G.",
             "German",
             "+7961111111",
-            "vgermanrus@gmail.com")
+            "vgermanrus@gmail.com",
+            null),
+            false
     );
 
     app.getContactHelper().submitContactModification();
