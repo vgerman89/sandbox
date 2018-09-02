@@ -28,6 +28,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
+    type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
@@ -58,6 +59,7 @@ public class ContactHelper extends HelperBase {
     initContactModificationById(contact.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
     String homephone = wd.findElement(By.name("home")).getAttribute("value");
     String mobilephone = wd.findElement(By.name("mobile")).getAttribute("value");
     String workphone = wd.findElement(By.name("work")).getAttribute("value");
@@ -65,7 +67,7 @@ public class ContactHelper extends HelperBase {
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     returnToContactPage();
-    return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
+    return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname).withAddress(address)
             .withHomePhone(homephone).withMobilePhone(mobilephone).withWorkPhone(workphone).withEmail(email)
             .withEmail2(email2).withEmail3(email3);
   }
@@ -120,9 +122,10 @@ public class ContactHelper extends HelperBase {
       List<WebElement> tds = element.findElements(By.tagName("td"));
       String firstname = tds.get(2).getText();
       String lastname = tds.get(1).getText();
+      String address = tds.get(3).getText();
       String allPhones = tds.get(5).getText();
       String allEmails = tds.get(4).getText();
-      contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
+      contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname).withAddress(address)
               .withAllPhones(allPhones).withAllEmails(allEmails));
     }
     return contacts;
