@@ -32,6 +32,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
     type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -59,9 +61,13 @@ public class ContactHelper extends HelperBase {
     String homephone = wd.findElement(By.name("home")).getAttribute("value");
     String mobilephone = wd.findElement(By.name("mobile")).getAttribute("value");
     String workphone = wd.findElement(By.name("work")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     returnToContactPage();
     return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
-            .withHomePhone(homephone).withMobilePhone(mobilephone).withWorkPhone(workphone);
+            .withHomePhone(homephone).withMobilePhone(mobilephone).withWorkPhone(workphone).withEmail(email)
+            .withEmail2(email2).withEmail3(email3);
   }
 
   public void initContactModificationById(int id) {
@@ -115,8 +121,9 @@ public class ContactHelper extends HelperBase {
       String firstname = tds.get(2).getText();
       String lastname = tds.get(1).getText();
       String allPhones = tds.get(5).getText();
+      String allEmails = tds.get(4).getText();
       contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
-              .withAllPhones(allPhones));
+              .withAllPhones(allPhones).withAllEmails(allEmails));
     }
     return contacts;
   }
