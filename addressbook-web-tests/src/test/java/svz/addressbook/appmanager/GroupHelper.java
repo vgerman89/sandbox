@@ -36,7 +36,6 @@ public class GroupHelper extends HelperBase {
     click(By.name("delete"));
   }
 
-
   public void selectGroupById(int id) {
     wd.findElement(By.cssSelector("input[value='"+ id +"']")).click();
   }
