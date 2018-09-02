@@ -12,9 +12,7 @@ public class ContactAddressTest extends TestBase {
   public void testContactAddress() {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
-    System.out.println(contact.getAddress());
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    System.out.println(contactInfoFromEditForm.getAddress());
     assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
   }
 }
