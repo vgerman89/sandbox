@@ -114,9 +114,9 @@ public class ContactHelper extends HelperBase {
       List<WebElement> tds = element.findElements(By.tagName("td"));
       String firstname = tds.get(2).getText();
       String lastname = tds.get(1).getText();
-      String[] phones = tds.get(5).getText().split("\n");
+      String allPhones = tds.get(5).getText();
       contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
-              .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+              .withAllPhones(allPhones));
     }
     return contacts;
   }
