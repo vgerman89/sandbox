@@ -8,10 +8,4 @@
             <class name="svz.addressbook.tests.GroupDeletionTests" />
         </classes>
     </test>
-
-    <test name="Contacts">
-        <classes>
-            <class name="svz.addressbook.tests.ContactCreationTests" />
-        </classes>
-    </test>
 </suite>
