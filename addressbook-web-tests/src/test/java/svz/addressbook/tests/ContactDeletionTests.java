@@ -28,7 +28,8 @@ public class ContactDeletionTests extends TestBase {
               .withEmail("vgermanrus@gmail.com")
               .withEmail2("email2")
               .withEmail3("email3")
-              .withGroup("test 1"), true);
+              //.withGroup("test 1")
+              , true);
     }
   }
 
