@@ -28,7 +28,7 @@ public class DbConnectionTest {
       rs.close();
       st.close();
       conn.close();
-      
+
       System.out.println(groups);
 
       //Do something with the Connection
