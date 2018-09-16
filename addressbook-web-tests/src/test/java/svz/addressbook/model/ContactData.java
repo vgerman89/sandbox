@@ -60,6 +60,7 @@ public class ContactData {
   @Expose
   @Transient
   private String group;
+  @Expose
   @Transient
   @Column(name = "photo")
   @Type(type = "text")
