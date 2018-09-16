@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.*;
 import svz.addressbook.appmanager.ApplicationManager;
+import svz.addressbook.model.ContactData;
+import svz.addressbook.model.Contacts;
 import svz.addressbook.model.GroupData;
 import svz.addressbook.model.Groups;
 
@@ -51,6 +53,16 @@ public class TestBase {
       Groups uiGroups = app.group().all();
       assertThat(uiGroups, equalTo(dbGroups.stream()
               .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+              .collect(Collectors.toSet())));
+    }
+  }
+
+  public void verifyContactListInUI() {
+    if (Boolean.getBoolean("verifyUI")){
+      Contacts dbContacts = app.db().contacts();
+      Contacts uiContacts = app.contact().all();
+      assertThat(uiContacts, equalTo(dbContacts.stream()
+              .map((c) -> new ContactData().withId(c.getId()).withLastName(c.getLastName()).withFirstName(c.getFirstName()).withAddress(c.getAddress()))
               .collect(Collectors.toSet())));
     }
   }
