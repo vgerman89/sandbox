@@ -57,7 +57,6 @@ public class ContactCreationTests extends TestBase {
 
     @Test (dataProvider = "validContactsFromXml")
     public void testContactCreation(ContactData contact) {
-      Groups groups = app.db().groups();
       app.goTo().homePage();
       Contacts before = app.db().contacts();
       app.contact().create((contact), true);

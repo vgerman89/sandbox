@@ -5,6 +5,10 @@ import org.testng.annotations.Test;
 import svz.addressbook.model.ContactData;
 import svz.addressbook.model.Contacts;
 import svz.addressbook.model.GroupData;
+import svz.addressbook.model.Groups;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAddGroupTest extends TestBase {
   @BeforeMethod
@@ -35,10 +39,15 @@ public class ContactAddGroupTest extends TestBase {
   @Test
   public void testContactAddGroup() {
     app.goTo().homePage();
-    Contacts contactOne = app.db().contacts();
-    ContactData modifiedContact = contactOne.iterator().next();
-    ContactData contact = new ContactData().withId(modifiedContact.getId());
+    Groups groups = app.db().groups();
+    Contacts before = app.db().contacts();
+    ContactData modifiedContact = before.iterator().next();
+    ContactData contact = new ContactData()
+            .withId(modifiedContact.getId()).inGroup(groups.iterator().next());
+    System.out.println(contact);
     app.contact().addGroup(contact);
+    Contacts after = app.db().contacts();
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     app.goTo().homePage();
   }
 

@@ -107,7 +107,7 @@ public class ContactHelper extends HelperBase {
 
   public void addGroup(ContactData contact){
     selectContactById(contact.getId());
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("test 2");
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(contact.getGroups().iterator().next().getName());
     click(By.name("add"));
   }
 
