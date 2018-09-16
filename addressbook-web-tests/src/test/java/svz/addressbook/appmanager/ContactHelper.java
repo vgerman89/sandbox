@@ -105,6 +105,12 @@ public class ContactHelper extends HelperBase {
     returnToContactPage();
   }
 
+  public void addGroup(ContactData contact){
+    selectContactById(contact.getId());
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("test 2");
+    click(By.name("add"));
+  }
+
   public void delete (ContactData contact){
     selectContactById(contact.getId());
     deleteSelectedContacts();
