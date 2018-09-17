@@ -29,11 +29,11 @@ public class GroupData {
   @Type(type = "text")
   private String footer;
 
-  @ManyToMany(mappedBy = "groups")
+  @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
   private Set<ContactData> contacts = new HashSet<ContactData>();
 
   public Set<ContactData> getContacts() {
-    return contacts;
+    return new Contacts(contacts);
   }
 
   public int getId() {
