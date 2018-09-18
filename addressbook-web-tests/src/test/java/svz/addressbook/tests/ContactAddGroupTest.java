@@ -7,6 +7,8 @@ import svz.addressbook.model.Contacts;
 import svz.addressbook.model.GroupData;
 import svz.addressbook.model.Groups;
 
+import java.security.acl.Group;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -38,14 +40,19 @@ public class ContactAddGroupTest extends TestBase {
   @Test
   public void testContactAddGroup() {
     app.goTo().homePage();
-    Groups groups = app.db().groups();
+    Groups allGroups = app.db().groups();
+    GroupData addedGroup = allGroups.iterator().next();
     Contacts before = app.db().contacts();
-    ContactData modifiedContact = before.iterator().next();
+    ContactData modifiedContactBefore = before.iterator().next();
+    Groups groupsBefore = modifiedContactBefore.getGroups();
     ContactData contact = new ContactData()
-            .withId(modifiedContact.getId()).inGroup(groups.iterator().next());
+            .withId(modifiedContactBefore.getId()).inGroup(addedGroup);
     app.contact().addGroup(contact);
     Contacts after = app.db().contacts();
-    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+    ContactData modifiedContactAfter = after.iterator().next();
+    Groups groupsAfter  = modifiedContactAfter.getGroups();
+    assertThat(groupsAfter.size(), equalTo(groupsBefore.size() + 1));
+    assertThat(groupsAfter, equalTo(groupsBefore.withAdded(addedGroup)));
     app.goTo().homePage();
   }
 }
