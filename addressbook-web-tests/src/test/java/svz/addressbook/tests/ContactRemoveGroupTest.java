@@ -3,9 +3,10 @@ package svz.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import svz.addressbook.model.ContactData;
-import svz.addressbook.model.Contacts;
 import svz.addressbook.model.GroupData;
 import svz.addressbook.model.Groups;
+
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -33,19 +34,45 @@ public class ContactRemoveGroupTest  extends TestBase {
               .withEmail2("email2")
               .withEmail3("email3"), true);
     }
+    //Проверяем, есть ли контакты добавленные в группы, если нет - добавляем в первую попавшуюся группу
+    int i = 0;
+    List<ContactData> contactsList = app.db().contactsList();
+    for (ContactData contact : contactsList) {
+      if (contact.getGroups().size() > 0 ) break;
+      else {
+        i ++;
+      }
+    }
+    if (i == contactsList.size()) {
+      Groups allGroups = app.db().groups();
+      GroupData addedGroup = allGroups.iterator().next();
+      ContactData modifiedContactBefore = contactsList.get(0);
+      ContactData contact = new ContactData()
+              .withId(modifiedContactBefore.getId()).inGroup(addedGroup);
+      app.goTo().homePage();
+      app.contact().addGroup(contact);
+    }
   }
+
   @Test
   public void testContactRemoveGroup() {
+    int i = 0;
+    List<ContactData> contactsList = app.db().contactsList();
+    for (ContactData contact : contactsList) {
+      if (contact.getGroups().size() > 0 ) break;
+      else {
+        i ++;
+      }
+    }
     app.goTo().homePage();
-    Contacts before = app.db().contacts();
-    ContactData deletedGroup = before.iterator().next();
-    Groups group = deletedGroup.getGroups();
-    System.out.println("GROUPS + " + group);
-    app.contact().removeGroup(deletedGroup);
-    Contacts after = app.db().contacts();
-    System.out.println("BEFORE +" + before);
-    System.out.println("AFTER +" + after);
-    //assertThat(after, equalTo(before.without(deletedGroup)));
+    ContactData modifiedContactBefore = contactsList.get(i);
+    Groups groupsBefore = modifiedContactBefore.getGroups();
+    app.contact().removeGroup(modifiedContactBefore);
+    List<ContactData> contactsListAfter = app.db().contactsList();
+    ContactData modifiedContactAfter = contactsListAfter.get(i);
+    Groups groupsAfter  = modifiedContactAfter.getGroups();
+    assertThat(groupsAfter.size(), equalTo(groupsBefore.size() - 1));
+    //assertThat(groupsAfter, equalTo(groupsBefore.without(deletedGroup)));
     app.goTo().homePage();
   }
 }

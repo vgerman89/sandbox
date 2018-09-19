@@ -3,7 +3,6 @@ package svz.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import svz.addressbook.model.ContactData;
-import svz.addressbook.model.Contacts;
 import svz.addressbook.model.GroupData;
 import svz.addressbook.model.Groups;
 
@@ -40,8 +39,6 @@ public class ContactAddGroupTest extends TestBase {
     int i = 0;
     List<ContactData> contactsList = app.db().contactsList();
     for (ContactData contact : contactsList) {
-      System.out.println(contact);
-      System.out.println(contact.getGroups());
       if (contact.getGroups().size() == 0 ){
         i ++;
       }
@@ -63,7 +60,6 @@ public class ContactAddGroupTest extends TestBase {
 
   @Test
   public void testContactAddGroup() {
-    app.goTo().homePage();
     Groups allGroups = app.db().groups();
     GroupData addedGroup = allGroups.iterator().next();
     int i = 0;
@@ -78,6 +74,8 @@ public class ContactAddGroupTest extends TestBase {
     Groups groupsBefore = modifiedContactBefore.getGroups();
     ContactData contact = new ContactData()
             .withId(modifiedContactBefore.getId()).inGroup(addedGroup);
+
+    app.goTo().homePage();
     app.contact().addGroup(contact);
     List<ContactData> contactsListAfter = app.db().contactsList();
     ContactData modifiedContactAfter = contactsListAfter.get(i);
