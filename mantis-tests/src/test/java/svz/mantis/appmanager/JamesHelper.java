@@ -90,7 +90,7 @@ public class JamesHelper {
       StringBuffer sb = new StringBuffer();
       char ch = (char) in.read();
       while (true) {
-        System.out.println(ch);
+        System.out.print(ch);
         sb.append(ch);
         if (ch == lastChar) {
           if (sb.toString().endsWith(pattern)) {
@@ -160,13 +160,11 @@ public class JamesHelper {
     Folder inbox = openInbox(username, password);
     List<MailMessage> messages = Arrays.asList(inbox.getMessages()).stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
     closeFolder(inbox);
-    System.out.println(messages);
     return messages;
   }
 
   public static MailMessage toModelMail(Message m) {
     try {
-      System.out.println(m);
       return new MailMessage(m.getAllRecipients()[0].toString(), (String) m.getContent());
       } catch (MessagingException e) {
       e.printStackTrace();
