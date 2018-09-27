@@ -5,19 +5,19 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "mantis_user_table")
-public class ContactData {
+public class UserData {
 
   @Id
   @Column(name = "id")
   private int id = Integer.MAX_VALUE;
-  @Column(name = "username")
-  @Type(type = "text")
+  @Column(name = "username", columnDefinition = "LONGTEXT")
+  //@Type(type = "text")
   private String username;
-  @Column(name = "email")
-  @Type(type = "text")
+  @Column(name = "email", columnDefinition = "LONGTEXT")
+  //@Type(type = "text")
   private String email;
 
-  public ContactData() {
+  public UserData() {
   }
 
   public int getId() {
@@ -32,24 +32,24 @@ public class ContactData {
     return email;
   }
 
-  public ContactData withId(int id) {
+  public UserData withId(int id) {
     this.id = id;
     return this;
   }
 
-  public ContactData withUsername(String username) {
+  public UserData withUsername(String username) {
     this.username = username;
     return this;
   }
 
-  public ContactData withEmail(String email) {
+  public UserData withEmail(String email) {
     this.email = email;
     return this;
   }
 
   @Override
   public String toString() {
-    return "ContactData{" +
+    return "UserData{" +
             "id=" + id +
             ", username='" + username + '\'' +
             ", email='" + email + '\'' +
@@ -61,7 +61,7 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
-    ContactData that = (ContactData) o;
+    UserData that = (UserData) o;
 
     if (id != that.id) return false;
     if (username != null ? !username.equals(that.username) : that.username != null) return false;

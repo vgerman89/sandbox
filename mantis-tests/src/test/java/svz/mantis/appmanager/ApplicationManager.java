@@ -24,6 +24,8 @@ public class ApplicationManager {
   private JamesHelper jamesHelper;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
+  private DbHelper dbHelper;
+  private UserHelper userHelper;
 
   public ApplicationManager(String browser)  {
     this.browser = browser;
@@ -72,7 +74,7 @@ public class ApplicationManager {
       } else if(browser.equals(BrowserType.EDGE)){
         wd = new EdgeDriver();
       }
-      wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
       wd.get(properties.getProperty("web.baseUrl"));
     }
     return wd;
@@ -103,5 +105,19 @@ public class ApplicationManager {
       navigationHelper = new NavigationHelper(this);
     }
     return navigationHelper;
+  }
+
+  public DbHelper db() {
+    if (dbHelper == null) {
+      dbHelper = new DbHelper(this);
+    }
+    return dbHelper;
+  }
+
+  public UserHelper user() {
+    if (userHelper == null) {
+      userHelper = new UserHelper(this);
+    }
+    return userHelper;
   }
 }
