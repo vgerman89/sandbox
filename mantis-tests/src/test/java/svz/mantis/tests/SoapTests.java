@@ -1,5 +1,6 @@
 package svz.mantis.tests;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import svz.mantis.model.Issue;
 import svz.mantis.model.Project;
@@ -13,8 +14,10 @@ import static org.testng.Assert.assertEquals;
 
 public class SoapTests extends TestBase {
 
+
   @Test
   public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
+    skipIfNotFixed(1);
     Set<Project> projects = app.soap().getProjects();
     System.out.println("Projects count: " + projects.size());
     for (Project project : projects) {
@@ -22,7 +25,7 @@ public class SoapTests extends TestBase {
     }
   }
 
-  @Test
+  @Test (enabled = false)
   public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException  {
     Set<Project> projects = app.soap().getProjects();
     Issue issue = new Issue().withSummary("Test Issue")
