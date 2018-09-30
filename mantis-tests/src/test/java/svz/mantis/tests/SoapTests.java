@@ -1,6 +1,5 @@
 package svz.mantis.tests;
 
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import svz.mantis.model.Issue;
 import svz.mantis.model.Project;
