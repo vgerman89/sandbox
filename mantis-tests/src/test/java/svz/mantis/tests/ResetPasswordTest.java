@@ -31,7 +31,7 @@ public class ResetPasswordTest extends TestBase {
     //Кликаем на нужного юзера, и кликаем сбросить пароль
     app.user().passwordReset(usersList.get(2));
     //Ждем письма на почте
-    List<MailMessage> mailMessages = app.james().waitForMail(user, "password", 600000);
+    List<MailMessage> mailMessages = app.james().waitForMail(user, password, 600000);
     //Переходим по ссылке из письма
     String passwordResetLink = findPasswordResetLink(mailMessages, email);
     //Задаем новый пароль
