@@ -44,6 +44,7 @@ public class ContactAddGroupTest extends TestBase {
       }
     }
     if (i == 0) {
+      app.goTo().homePage();
       app.contact().create(new ContactData()
               .withFirstName("Vitaliy")
               .withMiddleName("V.G.")

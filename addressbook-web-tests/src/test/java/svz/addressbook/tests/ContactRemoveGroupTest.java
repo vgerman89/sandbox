@@ -72,7 +72,7 @@ public class ContactRemoveGroupTest  extends TestBase {
     ContactData modifiedContactAfter = contactsListAfter.get(i);
     Groups groupsAfter  = modifiedContactAfter.getGroups();
     assertThat(groupsAfter.size(), equalTo(groupsBefore.size() - 1));
-    //assertThat(groupsAfter, equalTo(groupsBefore.without(deletedGroup)));
+    assertThat(groupsAfter, equalTo(groupsBefore.without(modifiedContactBefore.getGroups().iterator().next())));
     app.goTo().homePage();
   }
 }
