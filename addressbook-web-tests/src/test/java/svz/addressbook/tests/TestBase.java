@@ -1,6 +1,5 @@
 package svz.addressbook.tests;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
