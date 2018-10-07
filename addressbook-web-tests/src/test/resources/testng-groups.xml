@@ -4,8 +4,6 @@
     <test name="Groups" >
         <classes>
             <class name="svz.addressbook.tests.GroupCreationTests" />
-            <class name="svz.addressbook.tests.GroupModificationTests" />
-            <class name="svz.addressbook.tests.GroupDeletionTests" />
         </classes>
     </test>
 </suite>
