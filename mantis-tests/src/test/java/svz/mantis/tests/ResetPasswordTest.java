@@ -25,13 +25,13 @@ public class ResetPasswordTest extends TestBase {
   @Test
   public void resetPasswordTest() throws MessagingException, IOException, InterruptedException {
     List<UserData> usersList= app.db().usersList();
-    String user = String.format(usersList.get(2).getUsername());
-    String email = String.format(usersList.get(2).getEmail());
+    String user = String.format(usersList.get(0).getUsername());
+    String email = String.format(usersList.get(0).getEmail());
     String passwordNew = "passwordNew";
     app.session().login("administrator", "root");
     app.goTo().managePage();
     app.goTo().manageUserPage();
-    app.user().passwordReset(usersList.get(2));
+    app.user().passwordReset(usersList.get(0));
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 20000);
     String passwordResetLink = findPasswordResetLink(mailMessages, email);
     app.user().resetPasswordFinish(passwordResetLink, passwordNew);

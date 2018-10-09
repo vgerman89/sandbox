@@ -36,7 +36,7 @@ public class DbHelper extends HelperBase {
   public List<UserData> usersList() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<UserData> result = session.createQuery("from UserData where enabled=1").list();
+    List<UserData> result = session.createQuery("from UserData where enabled=1 and access_level=25").list();
     session.getTransaction().commit();
     session.close();
     return result;
